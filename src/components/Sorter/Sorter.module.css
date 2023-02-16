@@ -1,0 +1,52 @@
+.outerCont{
+    width: 90%;
+    padding: 1rem 2rem;
+    gap: 2rem;
+    background-color: white;
+    margin: auto;
+    margin-top: 2rem;
+    font-family: "Poppins";
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.outerContForm{
+    width: 100%;
+    gap: 2rem;
+    background-color: white;
+    font-family: "Poppins";
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;  
+}
+
+.optionCont{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: auto;
+}
+.optionText{
+font-weight: 600;
+font-size: 1.1rem;
+color: grey;
+}
+
+.input{
+padding: .5rem;
+}
+
+.searchBtn{
+    font-family: "Poppins";
+    padding: .7rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: 2px solid #2a72de;
+    color: #2a72de;
+    font-weight: 600;
+    margin-right: 1rem;
+    height: 4rem;
+}
