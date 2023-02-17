@@ -1,3 +1,7 @@
 body{
     background-color: #fafafa;
 }
+.outerCont{
+    display: flex;
+    flex-direction: column;
+}

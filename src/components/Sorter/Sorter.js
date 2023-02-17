@@ -4,7 +4,7 @@ import styles from "./Sorter.module.css"
 import { toast } from 'react-toastify';
 import { addSorted } from '../../redux/sortedDataSlice';
 
-const Sorter = () => {
+const Sorter = ({isSorted,setIsSorted}) => {
 
     const dispatch=useDispatch()
     const propData=useSelector((state)=>state.data)
@@ -12,7 +12,6 @@ const Sorter = () => {
     const[uniqLocation,setUniqLocation]=useState([])
     const[uniqPropType,setUniqPropType]=useState([])
     const [loading,setLoading]=useState(false)
-    const[isSorted,setIsSorted]=useState(false)
 
 
 //GET UNIQUE LOCATION
@@ -54,20 +53,19 @@ const handleSorting=(e)=>{
         newDataDateWise=newDataPropWise?.filter((prop)=>{return new Date(prop.expiredate)>=new Date(dataa.moveInDate)})
     }
    
-    if(newDataDateWise===undefined||newDataDateWise.length===0){toast.error("No match found for selected Date ");setLoading(false);return}
+    if(newDataDateWise===undefined||newDataDateWise.length===0){toast.error("No match found for selected Date ,Try Changing Selected Date");setLoading(false);return}
     if(newDataDateWise.length!==0){
-        if(dataa.price==="<500")
-        {newDataRatewise= newDataDateWise.filter((prop)=>{return Number(prop?.contact_zip?.slice(0,4))<=500  }) }
-        else if(dataa.price==="<2500") {newDataRatewise= newDataDateWise.filter((prop)=>{return Number(prop?.contact_zip?.slice(0,4))<2500  }) }
+       
+         if(dataa.price==="<2500") {newDataRatewise= newDataDateWise.filter((prop)=>{return Number(prop?.contact_zip?.slice(0,4))<2500  }) }
         else if(dataa.price==="<5000") {newDataRatewise= newDataDateWise.filter((prop)=>{return Number(prop?.contact_zip?.slice(0,4))<=5000  }) }
         else if(dataa.price===">5000") {newDataRatewise= newDataDateWise.filter((prop)=>{return Number(prop?.contact_zip?.slice(0,4))>5000 }) }
     }
-    if(newDataRatewise===undefined||newDataRatewise.length===0){toast.error("No match found for selected Rate ");setLoading(false);return}
+    if(newDataRatewise===undefined||newDataRatewise.length===0){toast.error("No match found for selected Rate ,Try Changing Rate");setLoading(false);return}
    
     if(newDataRatewise.length!==0){
         finalData=newDataRatewise.filter((prop)=>{return prop.property_type.toLowerCase()===dataa.propType})
     }
-    if(finalData===undefined||finalData.length===0){toast.error("No match found for selected Property Type ");setLoading(false);return}
+    if(finalData===undefined||finalData.length===0){toast.error("No match found for selected Property Type ,Try Changing Property Type");setLoading(false);return}
   
     if(newDataPropWise.length!==0&&
         newDataDateWise.length!==0&&
@@ -96,7 +94,6 @@ const handleSorting=(e)=>{
         <div className={styles.optionCont}>
             <p className={styles.optionText}>Price</p>
             <select value={dataa.price} onChange={handleSortSelct} name="price" className={styles.input} required>
-            <option value="<500">{`<$500`}</option>
             <option value="<2500">{`<$2500`}</option>
             <option value="<5000">{`<$5000`}</option>
             <option value=">5000">{`$>5000`}</option>
