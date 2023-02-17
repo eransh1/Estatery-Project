@@ -70,7 +70,7 @@ const handleSorting=(e)=>{
     if(newDataPropWise.length!==0&&
         newDataDateWise.length!==0&&
         newDataRatewise.length!==0&&
-        finalData.length!==0){toast.success("Found Some Result");setLoading(false);setDataa({location:"",moveInDate:"",price:"",propType:""});dispatch(addSorted(finalData));  setIsSorted(true)}
+        finalData.length!==0){toast.success("Found Some Result");setLoading(false);dispatch(addSorted(finalData));  setIsSorted(true)}
         else{setLoading(false)}
 
 }
@@ -108,7 +108,7 @@ const handleSorting=(e)=>{
 </select>
         </div>
         <button disabled={loading} type='submit' className={styles.searchBtn}>{loading?"Searrching..":"Search"}</button>
-        {isSorted?<button onClick={()=>{setIsSorted(false);dispatch(addSorted([]))}} className={styles.searchBtn}>Clear</button>:null}
+        {isSorted?<button onClick={()=>{setIsSorted(false);setDataa({location:"",moveInDate:"",price:"",propType:""});dispatch(addSorted([]))}} className={styles.searchBtn}>Clear</button>:null}
         </form>
     </section>
   )
